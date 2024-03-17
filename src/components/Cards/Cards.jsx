@@ -1,5 +1,7 @@
+import { ROUTE_PATHS } from "../../App";
 import "./Cards.css";
 import { Link } from "react-router-dom";
+import { navigateToRoute} from "../../App";
 
 function Cards({ image, title, id }) {
   console.log();
@@ -11,7 +13,9 @@ function Cards({ image, title, id }) {
       <div className="cardContent">
         <p className="cardTitle">{title}</p>
         <p className="cardInside">content</p>
-        <Link className="seeMore" key={id} to={`/animedetails/${id}`}>
+        <Link className="seeMore" 
+        key={id} 
+        to={navigateToRoute.gotoAnimateDetail(id)}>
           Devamını gör
         </Link>
       </div>

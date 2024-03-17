@@ -10,6 +10,19 @@ import Home from "./pages/Home";
 import RandomAnime from "./pages/RandomAnime";
 import AboutMe from "./pages/AboutMe";
 
+export const ROUTE_PATHS ={
+  RandomAnime: '/randomanime',
+  About : '/aboutme',
+  AnimeDetails : '/animedetails/:id'
+}
+
+export const navigateToRoute = {
+  gotoAnimateDetail: (id) => `${ROUTE_PATHS.AnimeDetails}`.replace(':id',id)
+}
+
+
+
+
 function App() {
   const { fetchData } = useAnime();
   useEffect(() => {
@@ -20,9 +33,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/randomanime" element={<RandomAnime />} />
-        <Route path="/aboutme" element={<AboutMe />} />
-        <Route path="/animedetails/:id" element={<AnimeDetails />} />
+        <Route path= {ROUTE_PATHS.RandomAnime} element={<RandomAnime />} />
+        <Route path={ROUTE_PATHS.About} element={<AboutMe />} />
+        <Route path={ROUTE_PATHS.AnimeDetails} element={<AnimeDetails />} />
       </Routes>
     </div>
   );

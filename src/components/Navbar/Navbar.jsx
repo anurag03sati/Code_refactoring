@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { ROUTE_PATHS } from "../../App";
 
 function Navbar() {
   return (
@@ -7,8 +8,8 @@ function Navbar() {
       <h1 className="logo">anime list</h1>
       <div className="menuItems">
         <Link to="/">Anasayfa</Link>
-        <Link to="/randomanime">Rastgele Anime</Link>
-        <Link to="/aboutme">Hakkımda</Link>
+        <Link to={ROUTE_PATHS.RandomAnime}>Rastgele Anime</Link>
+        <Link to={ROUTE_PATHS.About}>Hakkımda</Link>
       </div>
     </nav>
   );
