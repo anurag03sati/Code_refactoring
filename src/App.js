@@ -9,6 +9,16 @@ import Home from "./pages/Home";
 import RandomAnime from "./pages/RandomAnime";
 import AboutMe from "./pages/AboutMe";
 
+import {
+
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+// Create a client
+const queryClient = new QueryClient()
+
+
 export const ROUTE_PATHS ={
   RandomAnime: '/randomanime',
   About : '/aboutme',
@@ -24,15 +34,17 @@ export const navigateToRoute = {
 
 function App() {
   return (
-    <div className="container">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path= {ROUTE_PATHS.RandomAnime} element={<RandomAnime />} />
-        <Route path={ROUTE_PATHS.About} element={<AboutMe />} />
-        <Route path={ROUTE_PATHS.AnimeDetails} element={<AnimeDetails />} />
-      </Routes>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path= {ROUTE_PATHS.RandomAnime} element={<RandomAnime />} />
+          <Route path={ROUTE_PATHS.About} element={<AboutMe />} />
+          <Route path={ROUTE_PATHS.AnimeDetails} element={<AnimeDetails />} />
+        </Routes>
+      </div>
+    </QueryClientProvider>
   );
 }
 

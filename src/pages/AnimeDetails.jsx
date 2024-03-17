@@ -2,23 +2,17 @@ import "./details.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAnime } from "../api/getAnime";
-
+import { useQuery } from '@tanstack/react-query';
 function AnimeDetails() {
 
   const { id } = useParams();
 
-  const [animeDetail, setAnimeDetail] = useState({
-    mal_id: "",
-    title: "",
-    images: { jpg: { image_url: "" } },
-  });
+  const anime = useQuery({ queryKey: ['anime',id], queryFn: ()=>getAnime(id) })
 
-
-  useEffect(()=>{
-    getAnime(id).then(setAnimeDetail)
-  },[id])
-
-
+  if(anime.isLoading){
+    return <></>
+  }
+  const animeDetail = anime.data
   return (
     <div className="detailContainer">
       <div className="detailPage">

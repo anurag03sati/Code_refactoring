@@ -1,20 +1,14 @@
 import Cards from "../components/Cards/Cards";
-
+import { useQuery } from '@tanstack/react-query';
 import "../components/Cards/Cards.css";
-import { useEffect,useState } from "react";
 import { getAnimes } from "../api/getAnimes";
+
 function RandomAnime() {
-
-  const [animeList, setAnimeList] = useState([])
-
-  useEffect(()=>{
-    getAnimes().then(setAnimeList)
-  },[])
-
-
+  const animes = useQuery({ queryKey: ['animes'], queryFn: getAnimes })
+ 
   return (
     <div className="cardContainer">
-      {animeList.map((anime) => (
+      {!animes.isLoading && animes.data.map((anime) => (
           <Cards
             key={anime.mal_id}
             id={anime.mal_id}
@@ -25,4 +19,5 @@ function RandomAnime() {
     </div>
   );
 }
+
 export default RandomAnime;

@@ -1,3 +1,5 @@
 1 centralising locations to minimise places to change later on
 2 not calling fetchdata on homepage , only when necessary
 3 minimising ton of anime requests
+4 optimising refreshing anime api to once
+5 react-query to make caching and reloading faster
