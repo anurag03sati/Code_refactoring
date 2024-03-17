@@ -1,17 +1,20 @@
 import Cards from "../components/Cards/Cards";
-import { useAnime } from "../context/animeContext";
+
 import "../components/Cards/Cards.css";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
+import { getAnimes } from "../api/getAnimes";
 function RandomAnime() {
-  const { animeList, fetchData} = useAnime();
-  useEffect(() => {
-    fetchData();
-  },[fetchData]);
+
+  const [animeList, setAnimeList] = useState([])
+
+  useEffect(()=>{
+    getAnimes().then(setAnimeList)
+  },[])
+
 
   return (
     <div className="cardContainer">
-      {animeList &&
-        animeList.map((anime) => (
+      {animeList.map((anime) => (
           <Cards
             key={anime.mal_id}
             id={anime.mal_id}

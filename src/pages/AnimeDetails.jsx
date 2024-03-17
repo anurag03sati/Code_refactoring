@@ -1,26 +1,23 @@
 import "./details.css";
-import { useAnime } from "../context/animeContext";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getAnime } from "../api/getAnime";
 
 function AnimeDetails() {
-  const { animeList } = useAnime();
+
   const { id } = useParams();
+
   const [animeDetail, setAnimeDetail] = useState({
     mal_id: "",
     title: "",
     images: { jpg: { image_url: "" } },
   });
-  useEffect(() => {
-    if (animeList) {
-      animeList.map((anime) => {
-        if (anime.mal_id === Number(id)) {
-          setAnimeDetail(anime);
-        }
-        return true;
-      });
-    }
-  });
+
+
+  useEffect(()=>{
+    getAnime(id).then(setAnimeDetail)
+  },[id])
+
 
   return (
     <div className="detailContainer">

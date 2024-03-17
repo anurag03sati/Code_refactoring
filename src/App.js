@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useAnime } from "./context/animeContext";
+
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import AnimeDetails from "./pages/AnimeDetails";
