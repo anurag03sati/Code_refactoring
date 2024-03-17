@@ -24,10 +24,6 @@ export const navigateToRoute = {
 
 
 function App() {
-  const { fetchData } = useAnime();
-  useEffect(() => {
-    fetchData();
-  });
   return (
     <div className="container">
       <Navbar />

@@ -1,9 +1,12 @@
 import Cards from "../components/Cards/Cards";
 import { useAnime } from "../context/animeContext";
 import "../components/Cards/Cards.css";
-
+import { useEffect } from "react";
 function RandomAnime() {
-  const { animeList } = useAnime();
+  const { animeList, fetchData} = useAnime();
+  useEffect(() => {
+    fetchData();
+  },[fetchData]);
 
   return (
     <div className="cardContainer">
