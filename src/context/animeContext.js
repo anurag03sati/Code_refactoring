@@ -1,5 +1,6 @@
 import { createContext, useContext,useCallback, useState } from "react";
 import axios from "axios";
+import { getAnimes } from "../api/getAnimes";
 
 const Context = createContext();
 
@@ -7,8 +8,7 @@ const Provider = ({ children }) => {
   const [animeList, setAnimeList] = useState(false);
 
   const fetchData = useCallback(async () => {
-    const response = await axios.get("https://api.jikan.moe/v4/anime");
-    const { data: animes } = response.data;
+    const animes = await getAnimes();
     setAnimeList(animes);
   },[setAnimeList]);
 
